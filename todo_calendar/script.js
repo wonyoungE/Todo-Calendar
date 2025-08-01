@@ -1,4 +1,8 @@
-const calendar = document.querySelector("#calendar-days");
+// 공휴일 정보
+// 한국천문연구원_특일 정보 api
+const API_URL = "https://www.data.go.kr/data/15012690/openapi.do";
+
+const calendar = document.querySelector("#calendar");
 const weekdays = document.querySelector("#weekdays");
 const days = document.querySelector("#days");
 const yearMonth = document.querySelector("#year-month");
@@ -16,7 +20,6 @@ function renderCalendar(year, month) {
   // 요일 -> 0(일)부터 시작 | 월 -> 0(1월)부터 시작
   const firstDay = new Date(year, month, 1).getDay(); // 0(일) ~ 6(토)
   const lastDate = new Date(year, month + 1, 0).getDate(); // 말일 -> 다음 달의 0일로 설정
-  const lastDay = new Date(year, month, lastDate).getDay();
 
   yearMonth.innerText = `${year}년 ${month + 1}월`;
 
@@ -26,6 +29,11 @@ function renderCalendar(year, month) {
   weekdaysList.forEach((day) => {
     const dayDiv = document.createElement("div");
     dayDiv.classList.add("weekday");
+    if (day === "일") {
+      dayDiv.classList.add("sunday"); // 빨간색
+    } else if (day === "토") {
+      dayDiv.classList.add("saturday"); // 파란색
+    }
     dayDiv.innerText = day;
     weekdays.appendChild(dayDiv);
   });
@@ -46,13 +54,22 @@ function renderCalendar(year, month) {
 
     // 오늘이면
     const today = new Date();
-
     if (
       year === today.getFullYear() &&
       month === today.getMonth() &&
       i === today.getDate()
     ) {
       dayDiv.classList.add("today");
+    }
+
+    // 휴일 텍스트 색 변경 -> date에서 가져옴
+    const holiday = new Date(year, month, i).getDay();
+    if (holiday === 0) {
+      // 일요일
+      dayDiv.classList.add("sunday");
+    } else if (holiday === 6) {
+      // 토요일
+      dayDiv.classList.add("saturday");
     }
 
     days.appendChild(dayDiv);

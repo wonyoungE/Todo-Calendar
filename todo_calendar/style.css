@@ -22,7 +22,7 @@ body {
 header {
   margin: 0;
   padding: 0;
-  height: 50px;
+  height: 5%;
   background-color: #d8f3dc;
 }
 
@@ -32,7 +32,7 @@ main {
 }
 
 nav {
-  width: 250px;
+  width: 230px;
   height: 100%;
   padding: 10px;
 }
@@ -41,14 +41,14 @@ hr {
   margin: 0;
   padding: 0;
   height: 100%;
-  width: 2px;
+  width: 1px;
   border: none;
   background-color: #e0e0e0;
 }
 
 .calendar-container {
   flex-grow: 1;
-  padding: 20px 30px;
+  padding: 15px 30px;
 }
 
 /* 달력 상단 */
@@ -56,7 +56,7 @@ hr {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  /* gap: 10px; */
 }
 
 .btn {
@@ -85,35 +85,47 @@ hr {
 }
 
 /* 달력 */
-.calendar-days {
+#calendar {
+  flex-grow: 1;
   padding: 5px;
   margin-top: 10px;
 }
 
 #weekdays {
-  height: 30px;
-  padding-top: 4px;
+  height: 36px;
+  font-size: 1.1em;
+  font-weight: 500;
+  background-color: #e7f5e9;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  box-sizing: border-box;
-}
-
-.weekday {
-  background-color: #e7f5e9;
   text-align: center;
 }
 
+.weekday {
+  line-height: 36px;
+}
+
+.sunday {
+  color: red;
+}
+
+.saturday {
+  color: blue;
+}
+
 #days {
+  height: 520px;
   display: grid;
+  border: 1px solid #e0e0e0;
   grid-template-rows: repeat(6, 1fr);
   grid-template-columns: repeat(7, 1fr);
 }
 
 .day {
-  padding: 4px;
+  font-weight: 500;
+  padding: 4px 6px;
   display: grid;
-  grid-template-rows: 80px;
-  border: 1px solid #e0e0e0;
+  border: 0.5px solid #e0e0e0;
   border-collapse: collapse;
   box-sizing: border-box;
 }
