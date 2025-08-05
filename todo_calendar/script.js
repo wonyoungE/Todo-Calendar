@@ -1,13 +1,21 @@
 const calendar = document.querySelector("#calendar");
 const weekdays = document.querySelector("#weekdays");
 const days = document.querySelector("#days");
+const yearMonthContainer = document.querySelector("#year-month-container");
 const yearMonth = document.querySelector("#year-month");
-const prevBtn = document.querySelector("#prev");
-const nextBtn = document.querySelector("#next");
+const prevMonthBtn = document.querySelector("#prev-month");
+const nextMonthBtn = document.querySelector("#next-month");
+const dropdownContainer = document.querySelector("#dropdown-container");
+const prevYearBtn = document.querySelector("#prev-year");
+const nextYearBtn = document.querySelector("#next-year");
+const selectYear = document.querySelector("#select-year");
+const monthContainer = document.querySelector("#month-container");
 
 let date = new Date();
 let currentYear = date.getFullYear();
 let currentMonth = date.getMonth();
+let selectedYear = date.getFullYear();
+let selectedMonth = date.getMonth();
 
 // 공휴일 가져오는 API
 async function getRestDeInfo(year, month) {
@@ -45,7 +53,6 @@ async function renderCalendar(year, month) {
   } else if (!Array.isArray(restDayList)) {
     restDayList = [restDayList];
   }
-  console.log(restDayList);
   // 공휴일 리스트 맵에 저장
   const restDayMap = new Map();
   if (restDayList.length > 0) {
@@ -62,7 +69,9 @@ async function renderCalendar(year, month) {
   const firstDay = new Date(year, month, 1).getDay(); // 0(일) ~ 6(토)
   const lastDate = new Date(year, month + 1, 0).getDate(); // 말일 -> 다음 달의 0일로 설정
 
-  yearMonth.innerText = `${year}년 ${month + 1}월`;
+  yearMonth.innerText = `${year}년 ${month + 1}월▾`;
+  selectYear.innerText = `${year}년`;
+  selectYear.dataset.year = year;
 
   // 요일
   const weekdaysList = ["일", "월", "화", "수", "목", "금", "토"];
@@ -131,7 +140,7 @@ async function renderCalendar(year, month) {
   }
 }
 
-prevBtn.addEventListener("click", () => {
+prevMonthBtn.addEventListener("click", () => {
   if (currentMonth == 0) {
     currentYear--;
     currentMonth = 11;
@@ -142,7 +151,7 @@ prevBtn.addEventListener("click", () => {
   renderCalendar(currentYear, currentMonth);
 });
 
-nextBtn.addEventListener("click", () => {
+nextMonthBtn.addEventListener("click", () => {
   if (currentMonth == 11) {
     currentYear++;
     currentMonth = 0;
@@ -150,6 +159,29 @@ nextBtn.addEventListener("click", () => {
     currentMonth++;
   }
 
+  renderCalendar(currentYear, currentMonth);
+});
+
+yearMonth.addEventListener("click", () => {
+  dropdownContainer.classList.toggle("non-active");
+});
+
+prevYearBtn.addEventListener("click", () => {
+  selectedYear = selectYear.dataset.year;
+  selectYear.innerText = `${--selectedYear}년`;
+  selectYear.dataset.year = selectedYear;
+});
+
+nextYearBtn.addEventListener("click", () => {
+  selectedYear = selectYear.dataset.year;
+  selectYear.innerText = `${++selectedYear}년`;
+  selectYear.dataset.year = selectedYear;
+});
+
+monthContainer.addEventListener("click", (event) => {
+  const target = event.target;
+  currentYear = selectedYear;
+  currentMonth = parseInt(target.dataset.month); // dataset에서 꺼낸 값은 무조건 문자열
   renderCalendar(currentYear, currentMonth);
 });
 

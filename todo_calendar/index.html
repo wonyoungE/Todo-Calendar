@@ -30,9 +30,46 @@
         <div class="calendar-container">
           <!-- 헤더 -->
           <div class="calendar-header">
-            <button id="prev" class="btn"><</button>
-            <h2 id="year-month"></h2>
-            <button id="next" class="btn">></button>
+            <img id="prev-month" class="header-btn" src="./img/angle-left.png"></img>
+            <div id="year-month-container">
+              <h2 id="year-month"></h2>
+              <div id="dropdown-container" class="non-active">
+                <div id="select-dropdown">
+                  <div id="select-header">
+                    <div id="select-year">\</div>
+                    <div id="select-prev-next">
+                      <img
+                        id="prev-year"
+                        class="select-btn-img"
+                        src="./img/angle-up.png"
+                        alt=""
+                      />
+                      <img
+                        id="next-year"
+                        class="select-btn-img"
+                        src="./img/angle-down.png"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                  <div id="month-container">
+                    <div class="select-month" data-month="0">1월</div>
+                    <div class="select-month" data-month="1">2월</div>
+                    <div class="select-month" data-month="2">3월</div>
+                    <div class="select-month" data-month="3">4월</div>
+                    <div class="select-month" data-month="4">5월</div>
+                    <div class="select-month" data-month="5">6월</div>
+                    <div class="select-month" data-month="6">7월</div>
+                    <div class="select-month" data-month="7">8월</div>
+                    <div class="select-month" data-month="8">9월</div>
+                    <div class="select-month" data-month="9">10월</div>
+                    <div class="select-month" data-month="10">11월</div>
+                    <div class="select-month" data-month="11">12월</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <img id="next-month" class="header-btn" src="./img/angle-right.png"></img>
           </div>
           <!-- 달력 -->
           <div id="calendar">
