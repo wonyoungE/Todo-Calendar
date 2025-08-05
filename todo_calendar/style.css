@@ -30,7 +30,7 @@ html {
 }
 
 body {
-  width: 100vw;
+  display: flex;
   height: 100vh;
   margin: 0;
   padding: 0;
@@ -43,7 +43,7 @@ body {
 }
 
 #container {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -136,7 +136,6 @@ header {
 }
 
 main {
-  /* flex-grow: 1; */
   flex: 1;
   display: flex;
   overflow-y: auto;
@@ -158,6 +157,7 @@ hr {
 }
 
 .calendar-container {
+  flex: 1;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -209,7 +209,6 @@ hr {
 
 #year-month-container {
   position: relative;
-  /* top: 100%; */
 }
 
 #year-month {
@@ -241,6 +240,8 @@ hr {
   box-sizing: border-box;
   position: absolute;
   left: -23px;
+  transition: all 0.2s ease;
+
 }
 
 #select-header {
@@ -289,7 +290,8 @@ hr {
 
 /* 달력 */
 #calendar {
-  max-width: 1200px;
+  width: 100%;
+  table-layout: fixed;
   flex: 1;
   overflow: hidden;
   padding: 10px 20px;
@@ -321,9 +323,10 @@ hr {
 }
 
 .day {
-  /* height: calc(100%); */
+  width: calc(100%);
   color: #2e2e2e;
   font-weight: 500;
+  overflow-wrap: break-word;
   padding: 8px 10px;
   display: grid;
   border-collapse: collapse;

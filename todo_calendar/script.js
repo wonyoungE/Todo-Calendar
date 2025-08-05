@@ -162,7 +162,16 @@ nextMonthBtn.addEventListener("click", () => {
   renderCalendar(currentYear, currentMonth);
 });
 
-yearMonth.addEventListener("click", () => {
+// 드롭다운 외부 클릭 시 드롭다운 사라짐
+document.addEventListener("click", (event) => {
+  // 드롭다운 컨테이너 외부를 클릭했는지 확인
+  if (!dropdownContainer.contains(event.target)) {
+    dropdownContainer.classList.add("non-active");
+  }
+});
+
+yearMonth.addEventListener("click", (event) => {
+  event.stopPropagation(); // 이벤트 버블링 막기
   dropdownContainer.classList.toggle("non-active");
 });
 
