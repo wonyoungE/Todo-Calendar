@@ -1,7 +1,3 @@
-// 공휴일 정보
-// 한국천문연구원_특일 정보 api
-const API_URL = "https://www.data.go.kr/data/15012690/openapi.do";
-
 const calendar = document.querySelector("#calendar");
 const weekdays = document.querySelector("#weekdays");
 const days = document.querySelector("#days");
@@ -13,7 +9,52 @@ let date = new Date();
 let currentYear = date.getFullYear();
 let currentMonth = date.getMonth();
 
-function renderCalendar(year, month) {
+// 공휴일 가져오는 API
+async function getRestDeInfo(year, month) {
+  let restDayList = [];
+  const serviceKey =
+    "liUByGqNJq9XRSL6HBf7RxNCQGAk11%2FWHbtkhJWhIxE2cPiCMEDOfijfmT3P%2BPlQLBbCmWILdX7piKgM8wOxjQ%3D%3D";
+  const url = `https://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getHoliDeInfo?serviceKey=${serviceKey}&solYear=${year}&solMonth=${month
+    .toString()
+    .padStart(2, "0")}&_type=json`;
+
+  try {
+    // 요청 보내기
+    const response = await fetch(url);
+    const text = await response.text();
+    // 자바스크립트의 객체 형태로 파싱
+    const responseData = await JSON.parse(text);
+    // 공휴일 목록만 가져오기
+    restDayList = responseData.response.body.items.item;
+
+    return restDayList;
+  } catch (error) {
+    console.error("공휴일 가져오기 실패", error);
+    return [];
+  }
+}
+
+async function renderCalendar(year, month) {
+  // 공휴일 가져오기
+  let restDayList = await getRestDeInfo(year, month + 1); // 1월 = 0
+  // 해당 월에 공휴일이 하루인 경우 배열이 아닌 객체 1개로 응답이 옴..
+  // 배열로 강제 래핑
+  if (!restDayList) {
+    // 공휴일이 없는 경우
+    restDayList = [];
+  } else if (!Array.isArray(restDayList)) {
+    restDayList = [restDayList];
+  }
+  console.log(restDayList);
+  // 공휴일 리스트 맵에 저장
+  const restDayMap = new Map();
+  if (restDayList.length > 0) {
+    restDayList.forEach((restDay) => {
+      const day = parseInt(restDay.locdate.toString().slice(6, 8));
+      restDayMap.set(day, restDay.dateName);
+    });
+  }
+
   weekdays.innerHTML = "";
   days.innerHTML = "";
 
@@ -50,7 +91,12 @@ function renderCalendar(year, month) {
   for (let i = 1; i <= lastDate; i++) {
     const dayDiv = document.createElement("div");
     dayDiv.classList.add("day");
-    dayDiv.textContent = i;
+    dayDiv.dataset.day = i;
+
+    const restDayName = restDayMap.get(i) || "";
+    dayDiv.innerHTML = restDayName
+      ? `<div class="day-container restday">${i} <span class="restdayName">${restDayName}</span></div>`
+      : `<div class="day-container">${i}</div>`;
 
     // 오늘이면
     const today = new Date();
@@ -78,7 +124,6 @@ function renderCalendar(year, month) {
   // 달력 크기 고정을 위해 달력의 칸 수를 42칸으로 맞추기
   // 0: 일요일
   const curDivs = days.children.length;
-  console.log(curDivs);
   for (let i = curDivs; i < 42; i++) {
     const empty = document.createElement("div");
     empty.classList.add("day");

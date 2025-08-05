@@ -1,10 +1,41 @@
+@font-face {
+  font-family: "KimjungchulMyungjo-Bold";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/KimjungchulMyungjo-Bold.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Freesentation-9Black";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-9Black.woff2")
+    format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "LeeSeoyun";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  font-size: 18px;
+  /* font-family: "Pretendard", sans-serif; */
+  font-family: "LeeSeoyun", serif;
+  color: #2e2e2e;
+}
+
 body {
   width: 100vw;
   height: 100vh;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #ffffff;
+  background-color: #fcfafa;
 }
 
 * {
@@ -19,16 +50,96 @@ body {
   justify-content: flex-start;
 }
 
+/* 헤더 */
 header {
+  height: 45px;
+  flex-shrink: 0;
   margin: 0;
-  padding: 0;
-  height: 5%;
-  background-color: #d8f3dc;
+  padding: 5px 15px;
+  background-color: #e9e9e9;
+  display: flex;
+  justify-content: space-between;
+}
+
+#header-left {
+  display: flex;
+  justify-content: flex-start;
+  /* align-items: center; */
+  gap: 10px;
+}
+
+#menu-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+#menu-img {
+  width: fit-content;
+  height: 100%;
+  cursor: pointer;
+}
+
+#menu-list {
+  width: 120px;
+  color: #fefefe;
+  font-size: 1.3em;
+  margin: 0;
+  padding: 5px;
+  list-style: none;
+  border: 1px solid #cecece;
+  border-radius: 5px;
+  background-color: #333;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#menu-wrapper:hover #menu-list {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.commonLi {
+  padding: 10px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.commonLi:hover {
+  font-weight: 500;
+  background-color: #555;
+  transform: scale(1.05);
+}
+
+#title {
+  align-self: center;
+  font-size: 1.7em;
+  font-weight: 600;
+}
+
+#profile-container {
+  display: flex;
+}
+#profile-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+  align-self: center;
+}
+#profile-name {
+  font-size: 1.2em;
+  align-self: center;
 }
 
 main {
-  flex-grow: 1;
+  /* flex-grow: 1; */
+  flex: 1;
   display: flex;
+  overflow-y: auto;
 }
 
 nav {
@@ -41,61 +152,69 @@ hr {
   margin: 0;
   padding: 0;
   height: 100%;
-  width: 1px;
+  width: 2px;
   border: none;
-  background-color: #e0e0e0;
+  background-color: #cecece;
 }
 
 .calendar-container {
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
   padding: 15px 30px;
 }
 
 /* 달력 상단 */
 .calendar-header {
+  color: #2e2e2e;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* gap: 10px; */
 }
 
 .btn {
   display: inline-block;
-  padding: 8px 12px;
-  font-size: 1.2em;
+  padding: 8px 15px;
+  color: #2e2e2e;
+  font-size: 1.3em;
   text-align: center;
   border: none;
   background-color: transparent;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.1s ease;
 }
+
 .btn:hover {
   border-radius: 8px;
-  background-color: #e6f3e8;
+  /* color: #666; */
+  background-color: #e9e9e9;
 }
 
 #year-month {
   margin: 0;
   padding: 0;
   padding-bottom: 8px;
-  color: #333;
-  font-size: 1.9em;
+  font-size: 1.7em;
   font-weight: 500;
+  color: #2e2e2e;
   box-sizing: inherit;
 }
 
 /* 달력 */
 #calendar {
-  flex-grow: 1;
-  padding: 5px;
-  margin-top: 10px;
+  flex: 1;
+  overflow: hidden;
+  padding: 10px 20px;
+  border-radius: 6px;
+  margin: 10px;
+  background-color: #ffffff;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 #weekdays {
   height: 36px;
   font-size: 1.1em;
   font-weight: 500;
-  background-color: #e7f5e9;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   text-align: center;
@@ -105,31 +224,42 @@ hr {
   line-height: 36px;
 }
 
-.sunday {
-  color: red;
-}
-
-.saturday {
-  color: blue;
-}
-
 #days {
-  height: 520px;
+  min-height: 100%;
   display: grid;
-  border: 1px solid #e0e0e0;
+  border-top: 1px solid #ddd;
   grid-template-rows: repeat(6, 1fr);
   grid-template-columns: repeat(7, 1fr);
 }
 
 .day {
+  /* height: calc(100%); */
+  color: #2e2e2e;
   font-weight: 500;
-  padding: 4px 6px;
+  padding: 8px 10px;
   display: grid;
-  border: 0.5px solid #e0e0e0;
   border-collapse: collapse;
   box-sizing: border-box;
 }
 
 .today {
-  background-color: #f3f2f2;
+  background-color: #ecf1f8;
+  border: 2px solid #4d94ff;
+  font-weight: bold;
+  color: #1a1a1a;
+  border-radius: 6px;
+}
+
+.sunday,
+.restday {
+  color: #d84646;
+}
+
+.saturday {
+  color: #306abb;
+}
+
+.restdayName {
+  font-size: 0.8em;
+  color: #555;
 }
