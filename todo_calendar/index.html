@@ -3,6 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./style.css" />
     <title>todoCalendar</title>
   </head>
@@ -11,7 +18,7 @@
       <header class="header">
         <div id="header-left">
           <div id="menu-wrapper">
-            <img src="./img/menubar.png" id="menu-img" alt="image" />
+            <i id="menu-bar" class="fa-solid fa-bars"></i>
             <ul id="menu-list">
               <li id="li-cal" class="commonLi">캘린더</li>
               <li id="li-todo" class="commonLi">할 일</li>
@@ -25,8 +32,28 @@
         </div>
       </header>
       <main>
-        <nav></nav>
-        <hr />
+        <nav class="nav">
+          <div id="todo-container" class="nav-content-container">
+            <div id="todo-header" class="nav-header">
+              <h3><i class="fa-solid fa-list"></i><span>To do</span></h3>
+              <div id="todo-input-container">
+                <input type="text" id="todo-input" placeholder="할 일 있옹?" maxlength="15" autocomplete="off">
+                <button id="todo-add-btn" class="navBtn">추가</button>
+              </div>
+            </div>
+            <ul id="todo-list">
+
+            </ul>
+          </div>
+          <hr />
+          <div id="schedule-container" class="nav-content-container">
+            <!-- <h3><i class="fa-solid fa-calendar-days"></i> 오늘 일정</h3>
+            <p>스터디 미팅 - 오후 2시</p>
+            <p>친구 생일 🎉</p> -->
+          </div>
+          
+        </nav>
+        <hr id="main-hr"/>
         <div class="calendar-container">
           <!-- 헤더 -->
           <div class="calendar-header">
@@ -80,6 +107,7 @@
       </main>
     </div>
 
-    <script src="./script.js"></script>
+    <script src="./calendar.js"></script>
+    <script src="./todo.js"></script>
   </body>
 </html>
