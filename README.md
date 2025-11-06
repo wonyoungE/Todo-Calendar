@@ -1,31 +1,32 @@
-# 📅 Custom Calendar Project
+# <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Calendar.png" alt="Calendar" width="25" height="25" /> Todo-Calendar
 
-이 프로젝트는 **HTML, CSS, JavaScript**로 제작한 커스텀 달력 UI입니다.  
+이 프로젝트는 **HTML, CSS, JavaScript**로 제작한 커스텀 달력입니다.  
 드롭다운으로 **연도/월 선택**이 가능합니다.
+할 일을 추가/삭제할 수 있습니다.
 또한, **한국천문연구원 공휴일 API**를 활용하여 해당 월의 공휴일을 자동 표시합니다.
 > API 출처: [한국천문연구원_특일 정보 (data.go.kr)](https://www.data.go.kr/data/15012690/openapi.do)
 
 
 
-## ✨ 기능
+## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Dizzy.png" alt="Dizzy" width="25" height="25" /> 기능
 
 - **연도/월 선택 드롭다운**
   - 현재 연/월 표시
   - 클릭 시 연도와 월 선택 가능
   - 외부 영역 클릭 시 드롭다운 자동 닫힘
  
--  **달력 렌더링**
+- **달력 렌더링**
   - 해당 월의 날짜 자동 계산
   - 오늘 날짜 하이라이트
   - 공휴일 표시 -> **한국천문연구원 공휴일 API** 연동
 
 - **사이드 네비게이션(nav)**
-- 할 일 목록(To-do list)
-- 오늘 일정(추후 기능 추가 예정)
+  - 할 일 목록(To-do list)
+  - 오늘 일정(추후 기능 추가 예정)
 
 
 
-## 🔨 기술 스택
+## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Hammer%20and%20Wrench.png" alt="Hammer and Wrench" width="25" height="25" /> 기술 스택 <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Hammer%20and%20Wrench.png" alt="Hammer and Wrench" width="25" height="25" />
 - HTML5
 - CSS3
 - Vanilla JavaScript (ES6)
@@ -33,26 +34,30 @@
 
 
 
-## 📂 프로젝트 구조
-📦 project-root
+## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/File%20Folder.png" alt="File Folder" width="25" height="25" /> 프로젝트 구조
+```text
+project-root
 ├── index.html # 메인 HTML
 ├── style.css # 스타일 시트
 ├── script.js # 달력 렌더링 및 이벤트 처리
 ├── img/ # 아이콘, 버튼 이미지
 └── README.md # 프로젝트 설명
-
+```
  
 
-## 📸 스크린샷
-### 달력화면
+## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Camera%20with%20Flash.png" alt="Camera with Flash" width="25" height="25" /> 서비스 화면
+### 달력
 <img width="1915" height="944" alt="image" src="https://github.com/user-attachments/assets/118713f2-a9aa-4693-8896-43cf6d34cd7e" />
+
 ### 드롭다운
 <img width="1918" height="944" alt="image" src="https://github.com/user-attachments/assets/19e154bb-2943-45ad-8c20-e7145cd2ec5c" />
 
+### 할 일 추가
+<img alt="image" src="https://github.com/user-attachments/assets/6de15d96-2751-41f5-9d3c-c34df884da99" />
 
 
-## 📌 개선 예정
-- 일정 추가 / 삭제 기능
+
+## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Pushpin.png" alt="Pushpin" width="25" height="25" /> 개선 예정
 - 다크모드
 
 ## 공휴일 API 연동 예시
